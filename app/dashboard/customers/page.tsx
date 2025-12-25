@@ -19,7 +19,7 @@ export default async function Page(props: {
 
   return (
     <main>
-      <CustomersTable customers={customers} />
+     <CustomersTable customers={customers as any} />
     </main>
   );
 }
