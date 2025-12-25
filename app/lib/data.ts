@@ -45,10 +45,10 @@ export async function fetchLatestInvoices() {
     `;
 
     // Devuelve un array limpio y formatea el amount
-    return data.rows.map((invoice) => ({
+    return data.rows.map((invoice: any) => ({
       ...invoice,
-      amount: formatCurrency(Number(invoice.amount)), // fuerza number
-      date: invoice.date, // opcional: formatear aquí si quieres
+      amount: formatCurrency(Number(invoice.amount)),
+      date: invoice.date,
     }));
   } catch (error) {
     console.error("Database Error in fetchLatestInvoices:", error);
@@ -168,7 +168,7 @@ export async function fetchInvoiceById(id: string) {
       WHERE invoices.id = ${id};
     `;
 
-    const invoice = data.rows.map((invoice) => ({
+    const invoice = data.rows.map((invoice: any) => ({
       ...invoice,
       amount: invoice.amount / 100, // si quieres normalizar
     }));
@@ -217,7 +217,7 @@ export async function fetchFilteredCustomers(query: string) {
     `;
 
     // Devuelve un array limpio y formatea los importes
-    return data.rows.map((customer) => ({
+    return data.rows.map((customer: any) => ({
       ...customer,
       total_pending: formatCurrency(customer.total_pending),
       total_paid: formatCurrency(customer.total_paid),
